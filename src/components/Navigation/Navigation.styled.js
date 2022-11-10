@@ -1,7 +1,12 @@
-import styled from "styled-components";
+import { AppBar, Toolbar } from "@mui/material"
+import styled from "styled-components"
 
-export const NavBar = styled.nav`
+
+export const NavBar = styled(AppBar)`
+display: flex 
+`
+
+export const ToolNav = styled(Toolbar)`
 display: flex;
-justify-content: baseline;
-justify-content: space-between;
+justify-content: space-between
 `

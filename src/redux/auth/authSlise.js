@@ -6,7 +6,8 @@ const initialState = {
     token: "",
     isLogin: false,
     loading: false,
-    error: null
+    error: null,
+    isRefresh: false
 };
 
 
@@ -61,17 +62,20 @@ const authSlise = createSlice({
     
         },
         [currentUser.pending]: (store) => {
+            store.isRefresh = true;
             store.loading = true;
             store.error = null
         },
         [currentUser.fulfilled]: (store, { payload }) => {
             store.user = payload;
             store.loading = false;
-            store.isLogin = true
+            store.isLogin = true;
+             store.isRefresh = false
         },
         [currentUser.rejected]: (store, { payload }) => {
             store.loading = false;
-            store.error = payload
+            store.error = payload;
+             store.isRefresh = false
     
         }
     }

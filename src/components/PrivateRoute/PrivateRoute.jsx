@@ -4,5 +4,5 @@ import { useSelector } from "react-redux";
 
 export default function PrivateRoute() {
   const isUserLogin = useSelector(isLogin);
-  return !isUserLogin ? <Navigate to="/"/> : <Outlet/>
+  return !isUserLogin ? <Navigate to="/login"/> : <Outlet/>
 };

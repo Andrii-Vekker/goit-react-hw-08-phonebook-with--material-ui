@@ -1,7 +1,6 @@
 import { AuthContainer } from "./UserAuth.stylrd";
 import { LinkStyled } from "linkStyles/Link.styled";
 
-
 export default function UserAuth() {
   return (
       <AuthContainer>

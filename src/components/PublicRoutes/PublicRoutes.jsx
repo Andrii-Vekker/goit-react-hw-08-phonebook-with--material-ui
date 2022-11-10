@@ -7,5 +7,4 @@ export default function PublicRoutes({restricted}) {
   const isUserLogin = useSelector(isLogin);
   const shouldNavigate = isUserLogin && restricted
   return shouldNavigate ? <Navigate to="/contacts"/> : <Outlet/>
-
 };

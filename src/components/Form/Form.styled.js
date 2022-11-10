@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import {Form, Field } from 'formik';
-
+import { Button } from '@mui/material';
 
 
 export const FormContainer = styled(Form)`
 display: flex;
-margin-top: 20px;
 flex-direction: column;
 border: 1px solid black;
 border-radius: 4px;
@@ -13,16 +12,13 @@ border-radius: 4px;
 width: 400px;
 `;
 
-export const BtnAdd = styled.button`
+export const BtnAdd = styled(Button)`
 display: inline-block;
-justify-content: flex-end;
-width: auto;
+margin:auto;
+width: 30%;
 height: 25px;
 :hover{
-    scale: 1.3;
-    background-color:skyblue;
-    color: white;
-    border: none
+    scale: 1.01;
 }
 
 `

@@ -35,6 +35,7 @@ export const Item = styled.li`
 font-size: 20px;
 width: 50%;
 margin: 0 ;
+margin-top: 8px;
 margin-bottom: 8px;
 display: flex;
 justify-content: space-between;

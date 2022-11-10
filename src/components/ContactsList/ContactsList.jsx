@@ -5,7 +5,7 @@ import { deleteContacts } from "redux/ContactsOperations";
 import { fetchContacts } from "redux/ContactsOperations";
 import { useEffect } from "react";
 import Loader from "components/Loader/Loader";
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ContactsList() {
     const filterValue = useSelector(state => state.filter.filter);
@@ -33,7 +33,7 @@ export default function ContactsList() {
                 {contacts.length>0 && visibleContacts.map(({ name, number, id }) => (
                                     <Item key={id}>{name} : {number}
                         <BtnAdd type="button" onClick={() => dispatch(deleteContacts(id))}>
-                            <span style={{ color: "red", cursor: "pointer" }}>&times;</span></BtnAdd>
+                            <span style={{ color: "red", cursor: "pointer" }}><DeleteIcon/></span></BtnAdd>
                     </Item>
                                     
                 ))}
