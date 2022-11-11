@@ -36,7 +36,6 @@ export const contactsReducer = createSlice({
             state.isLoading = true
         },
         [deleteContacts.fulfilled]: (state, { payload }) => {
-            console.log(payload)
             state.isLoading = false
             state.items =  state.items.filter(({id}) => id !== payload)
         },

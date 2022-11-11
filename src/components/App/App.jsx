@@ -8,13 +8,13 @@ import { useDispatch } from "react-redux";
 import { currentUser } from "redux/auth/authOperations";
 import { Container } from "@mui/material";
 import { useSelector } from 'react-redux';
+import HomePage from 'components/pages/HomePage/HomePage';
 
 import Navigation from "components/Navigation/Navigation";
 
 export default function App() {
   const dispatch = useDispatch();
   const refresh = useSelector(state => state.auth.isRefresh)
-  console.log(refresh)
 useEffect(() => {
 dispatch(currentUser())
 }, [dispatch])
@@ -23,7 +23,8 @@ dispatch(currentUser())
     !refresh && (
       <Container>
       <ToastContainer/>
-      <Navigation />
+        <Navigation />
+        {/* <HomePage/> */}
       <UserRoutes />
     </Container>
     )

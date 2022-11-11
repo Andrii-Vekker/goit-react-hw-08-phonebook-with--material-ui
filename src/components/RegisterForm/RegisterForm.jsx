@@ -7,7 +7,7 @@ import { signupUser } from 'redux/auth/authOperations';
 const schema = yup.object().shape({
     name: yup.string().required("Please enter your name"),
     email:yup.string().required("Please enter your email"),
-    password:yup.string().required("Please enter your password"),
+    password:yup.string().min(7, "password must have at least 7 characters").required("Please enter your password"),
     
 });
 
@@ -19,9 +19,8 @@ const initialValues = {
 export default function RegisterForm() {
   const dispatch = useDispatch();
 
-    const handleSubmit = (values, { resetForm }) => {
+    const handleSubmit = (values) => {
         dispatch(signupUser(values))
-        resetForm()
     };
     
     return (

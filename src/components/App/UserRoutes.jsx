@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy} from "react";
 import Loader from "components/Loader/Loader";
+import HomePage from "components/pages/HomePage/HomePage";
 
 const  NotFoundPage = lazy(() => import("components/pages/NotFoundPage/NotFoundPage")); 
 const  RegisterPage = lazy(() => import("components/pages/RegisterPage/RegisterPage")); 
@@ -14,6 +15,7 @@ export default function UserRoutes() {
     <Suspense fallback={<Loader/>}>
       <Routes>
         <Route element={<PublicRoutes restricted={true} />}>
+          <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Route>

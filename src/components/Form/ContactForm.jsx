@@ -6,9 +6,18 @@ import { addContacts } from 'redux/ContactsOperations';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { toast } from "react-toastify";
 
+// function validateName(value) {
+//     let error;
+//     if (!value) {
+//         toast.error("Please enter name")
+//         error = 'Required';
+  
+//         return error;
+//     };
+// };
 
 const schema = yup.object().shape({
-    name: yup.string().required("please enter name"),
+    name: yup.string().required("enter your name"),
     number: yup.string().trim().min(7).max(7)
     .required("please enter tel")
     .matches(
@@ -24,23 +33,23 @@ const initialValues = {
 };
 export default function ContactForm() {
     const dispatch = useDispatch();
-    const contactsData = useSelector(state => state.contacts.items);
-    const handleSubmit = (values, { resetForm }) => {
-        // const nameLength = values.name.length
-                      if (!contactsData.includes(values.name)) {
+    const handleSubmit = (values, { resetForm, validate } ) => {
+        validate(values)
         dispatch(addContacts(values))
-        }
-               else { toast.error("this name allready in list") }
         resetForm();
          };
     
     return (
-        <>
-            <Formik validationSchema={schema} onSubmit={handleSubmit} initialValues={initialValues}>
-                <FormContainer autoComplete="off">
+        
+        <Formik validationSchema={schema} onSubmit={handleSubmit} initialValues={initialValues}
+            validateOnChange={false} validateOnBlur={false} >
+                {
+                    ({errors, touched}) => (
+                         <FormContainer autoComplete="off">
                     <Label htmlFor="name">
                         <Span>Name</Span>
-                        <Input type="text" name="name" />
+                                <Input type="text" name="name"  />
+                                {errors.name && touched.name && toast.error("enter your name")}
                         <ErrorMessage name='name' component="div" />
                     </Label>
                     <Label htmlFor="phone">
@@ -50,7 +59,9 @@ export default function ContactForm() {
                     </Label>
                     <BtnAdd variant='contained' type="submit">Add <PersonAddIcon /></BtnAdd>
                 </FormContainer>
+                    )
+               }
             </Formik>
-        </>
+    
     );
 };

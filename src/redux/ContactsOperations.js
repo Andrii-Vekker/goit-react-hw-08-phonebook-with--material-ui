@@ -37,8 +37,10 @@ export const fetchContacts = createAsyncThunk(
       condition: (data, {getState}) => {
         const { contacts } = getState() 
        if (isDublicate(data, contacts.items)) {
-        toast.error("This name allredy in contacts")
-       }
+         toast.error("This name allredy in contacts")
+         return false
+        }
+        
     }
     });
   

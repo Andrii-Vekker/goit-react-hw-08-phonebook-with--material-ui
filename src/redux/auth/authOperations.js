@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { login, signup, logOut, getCurrentUser } from "API/ApiAuth";
+import { toast } from "react-toastify";
  
 export const signupUser = createAsyncThunk(
     "auth/signup",
@@ -8,11 +9,10 @@ export const signupUser = createAsyncThunk(
             const res = await signup(data);
             return res;
         } catch ({ response }) {
-            const error = {
-                status: response.status,
-                message: response.data.message
-            };
-            return rejectWithValue(error)
+           if (response.status === 400) {
+            return (rejectWithValue(toast.error("User creation error")))
+           }
+            return rejectWithValue(toast.error("Server error"))
         };
     }
 );
@@ -23,12 +23,12 @@ export const loginUser = createAsyncThunk(
       try {
           const res = await login(data);
         return res
-      } catch ({response}) {
+      } catch ({ response }) {
           const error = {
               status: response.status,
               message: response.data.message
           }
-          return rejectWithValue(error)
+          return rejectWithValue(error, toast.error("Incorrect email or password"))
       }
     }
 );
@@ -56,7 +56,6 @@ export const currentUser = createAsyncThunk(
         try {
             const { auth } = getState()
             const res = await getCurrentUser(auth.token);
-            console.log(res)
             return res
         } catch ({ response }) {
             const error = {
