@@ -6,15 +6,6 @@ import { addContacts } from 'redux/ContactsOperations';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { toast } from "react-toastify";
 
-// function validateName(value) {
-//     let error;
-//     if (!value) {
-//         toast.error("Please enter name")
-//         error = 'Required';
-  
-//         return error;
-//     };
-// };
 
 const schema = yup.object().shape({
     name: yup.string().required("enter your name"),
@@ -33,8 +24,7 @@ const initialValues = {
 };
 export default function ContactForm() {
     const dispatch = useDispatch();
-    const handleSubmit = (values, { resetForm, validate } ) => {
-        validate(values)
+    const handleSubmit = (values, { resetForm } ) => {
         dispatch(addContacts(values))
         resetForm();
          };

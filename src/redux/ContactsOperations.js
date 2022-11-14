@@ -51,7 +51,7 @@ export const fetchContacts = createAsyncThunk(
       await removeContact(id);
       return id
     } catch (error) {
-      return rejectWithValue(error.message)
+      return rejectWithValue(error.message, toast.error("Please relogining"))
     };
   });
 ////////////////////////////////////////////////////////////////////////
